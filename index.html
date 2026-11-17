@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Thanksgiving Challenge - English Open House</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Canvas for celebration confetti -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="app-container">
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+      <div class="brand" id="btn-brand-home" title="Go to Main Menu">
+        <span class="brand-icon">🦃</span>
+        <div>
+          <h1 class="brand-title">Thanksgiving Challenge</h1>
+          <p class="brand-sub">English Open House Booth</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-icon" id="btn-sound-toggle" title="Toggle Sound">🔊</button>
+        <button class="btn-icon" id="btn-rules-modal" title="Game Rules">ℹ️</button>
+        <button class="btn-icon" id="btn-home-nav" title="Home Menu">🏠</button>
+      </div>
+    </header>
+
+    <!-- ===============================================================
+         SCREEN 1: MAIN MENU / GAME HUB
+         =============================================================== -->
+    <main class="screen active" id="screen-home">
+      <section class="hero-card">
+        <span class="hero-tag">English Project • Open House</span>
+        <h2 class="hero-title">Happy Thanksgiving!</h2>
+        <p class="hero-desc">
+          Test your English skills, learn American harvest traditions, and beat the clock in under <strong>2 minutes</strong> to earn a delicious snack!
+        </p>
+        <div class="hero-rules-pill">
+          <span>⏱️ 2 Minutes Max</span>
+          <span>🎯 Pick Any Game</span>
+          <span>🎁 Win a Treat!</span>
+        </div>
+      </section>
+
+      <section class="games-grid">
+        <!-- Game 1: Build Your Feast -->
+        <article class="game-card card-feast" id="card-feast">
+          <span class="card-badge">Touch & Play</span>
+          <div class="card-icon">🍽️</div>
+          <h3 class="card-title">1. Build Your Feast</h3>
+          <p class="card-desc">
+            Serve <strong>5 traditional foods</strong> on your holiday plate. Watch out for modern fast foods!
+          </p>
+          <div class="card-meta">
+            <span>⏱️ 2:00 mins</span>
+            <span>❤️ Max 1 mistake (2 lives)</span>
+          </div>
+          <button class="btn btn-primary card-btn">Play Feast!</button>
+        </article>
+
+        <!-- Game 2: Trivia Rush -->
+        <article class="game-card card-trivia" id="card-trivia">
+          <span class="card-badge">7 Questions</span>
+          <div class="card-icon">🥧</div>
+          <h3 class="card-title">2. Trivia Rush</h3>
+          <p class="card-desc">
+            Answer <strong>7 random questions</strong> about history, traditions, and football.
+          </p>
+          <div class="card-meta">
+            <span>⏱️ 2:00 mins</span>
+            <span>⭐ Score 6/7 to win</span>
+          </div>
+          <button class="btn btn-primary card-btn">Play Trivia!</button>
+        </article>
+
+        <!-- Game 3: Memory Vocabulary -->
+        <article class="game-card card-memory" id="card-memory">
+          <span class="card-badge">Time Trial</span>
+          <div class="card-icon">🍂</div>
+          <h3 class="card-title">3. Memory Match</h3>
+          <p class="card-desc">
+            Find all <strong>8 vocabulary pairs</strong> on the 16-card board before the clock hits zero.
+          </p>
+          <div class="card-meta">
+            <span>⏱️ 2:00 mins</span>
+            <span>✨ Unlimited flips!</span>
+          </div>
+          <button class="btn btn-primary card-btn">Play Memory!</button>
+        </article>
+
+        <!-- Game 4: The Category Wheel -->
+        <article class="game-card card-wheel" id="card-wheel">
+          <span class="card-badge">Spin & Quiz</span>
+          <div class="card-icon">🎡</div>
+          <h3 class="card-title">4. Category Wheel</h3>
+          <p class="card-desc">
+            Spin the wheel to get your category, then answer <strong>3 multiple-choice questions</strong>.
+          </p>
+          <div class="card-meta">
+            <span>⏱️ 2:00 mins</span>
+            <span>⭐ Score 2/3 to win</span>
+          </div>
+          <button class="btn btn-primary card-btn">Spin & Play!</button>
+        </article>
+      </section>
+    </main>
+
+    <!-- ===============================================================
+         SCREEN 2: GAME 1 - BUILD YOUR FEAST
+         =============================================================== -->
+    <section class="screen" id="screen-game-feast">
+      <div class="game-hud">
+        <div class="hud-item">
+          <span>Feast:</span>
+          <span class="hud-status-badge" id="feast-count">0 / 5</span>
+        </div>
+        <div class="hud-item">
+          <span>Lives:</span>
+          <span class="hud-lives" id="feast-lives">❤️❤️</span>
+        </div>
+        <div class="hud-item">
+          <span>Time:</span>
+          <span class="hud-timer" id="feast-timer">02:00</span>
+        </div>
+      </div>
+
+      <div class="feast-stage">
+        <div class="feast-fact-banner" id="feast-fact">
+          👉 Tap the foods on the buffet below that belong to traditional Thanksgiving dinner!
+        </div>
+
+        <div class="plate-container">
+          <div class="plate-inner">
+            <div class="plate-empty-prompt" id="plate-empty-msg">
+              🍽️ Your Thanksgiving plate is empty! Add 5 traditional dishes.
+            </div>
+            <div class="plate-slots" id="plate-slots"></div>
+          </div>
+        </div>
+
+        <div class="buffet-section">
+          <h3 class="buffet-heading">Holiday Buffet (Tap traditional foods!)</h3>
+          <div class="buffet-grid" id="buffet-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         SCREEN 3: GAME 2 - TRIVIA RUSH
+         =============================================================== -->
+    <section class="screen" id="screen-game-trivia">
+      <div class="game-hud">
+        <div class="hud-item">
+          <span>Progress:</span>
+          <span class="hud-status-badge" id="trivia-progress">1 / 7</span>
+        </div>
+        <div class="hud-item">
+          <span>Mistakes:</span>
+          <span class="hud-status-badge" id="trivia-mistakes">0 / 1 max</span>
+        </div>
+        <div class="hud-item">
+          <span>Time:</span>
+          <span class="hud-timer" id="trivia-timer">02:00</span>
+        </div>
+      </div>
+
+      <div class="trivia-container">
+        <div class="trivia-progress-bar">
+          <div class="trivia-progress-fill" id="trivia-progress-fill"></div>
+        </div>
+
+        <div class="trivia-card">
+          <div class="trivia-question-number" id="trivia-q-num">Question 1 of 7</div>
+          <h3 class="trivia-question-text" id="trivia-q-text">Loading question...</h3>
+          <div class="trivia-options" id="trivia-options-grid"></div>
+          <div class="trivia-explanation" id="trivia-explanation"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         SCREEN 4: GAME 3 - MEMORY MATCH
+         =============================================================== -->
+    <section class="screen" id="screen-game-memory">
+      <div class="game-hud">
+        <div class="hud-item">
+          <span>Pairs:</span>
+          <span class="hud-status-badge" id="memory-pairs-count">0 / 8</span>
+        </div>
+        <div class="hud-item">
+          <span>Rule:</span>
+          <span style="font-size:0.85rem; color:var(--text-muted);">Beat the clock!</span>
+        </div>
+        <div class="hud-item">
+          <span>Time:</span>
+          <span class="hud-timer" id="memory-timer">02:00</span>
+        </div>
+      </div>
+
+      <div class="memory-container">
+        <div class="memory-grid" id="memory-grid"></div>
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         SCREEN 5: GAME 4 - THE CATEGORY WHEEL
+         =============================================================== -->
+    <section class="screen" id="screen-game-wheel">
+      <div class="game-hud">
+        <div class="hud-item">
+          <span>Theme:</span>
+          <span class="hud-status-badge" id="wheel-hud-theme">Spin the Wheel!</span>
+        </div>
+        <div class="hud-item" id="wheel-quiz-hud-meta" style="display:none;">
+          <span>Q:</span>
+          <span class="hud-status-badge" id="wheel-q-progress">1 / 3</span>
+        </div>
+        <div class="hud-item">
+          <span>Time:</span>
+          <span class="hud-timer" id="wheel-timer">02:00</span>
+        </div>
+      </div>
+
+      <div class="wheel-container">
+        <!-- Stage A: The Wheel -->
+        <div class="wheel-stage" id="wheel-stage-view">
+          <div class="wheel-pointer">▼</div>
+          <canvas class="wheel-canvas" id="wheel-canvas" width="340" height="340"></canvas>
+          <div class="wheel-center-cap">🦃</div>
+          <button class="btn btn-primary" id="btn-spin-wheel" style="margin-top: 20px; font-size:1.15rem; padding:16px 36px;">
+            🎡 SPIN THE WHEEL!
+          </button>
+        </div>
+
+        <div class="wheel-result-banner" id="wheel-result-banner"></div>
+
+        <!-- Stage B: The 3 Thematic Questions -->
+        <div class="wheel-quiz-card" id="wheel-quiz-card">
+          <div class="trivia-card">
+            <div class="trivia-question-number" id="wheel-q-num">Question 1 of 3</div>
+            <h3 class="trivia-question-text" id="wheel-q-text">Loading question...</h3>
+            <div class="trivia-options" id="wheel-options-grid"></div>
+            <div class="trivia-explanation" id="wheel-explanation"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         SCREEN 6: VICTORY & SNACK TICKET
+         =============================================================== -->
+    <section class="screen" id="screen-victory">
+      <div class="victory-wrapper">
+        <div class="ticket-container">
+          <div class="ticket-header">
+            <span class="ticket-badge">Official Winner Pass</span>
+            <h2 class="ticket-title">Golden Snack Ticket</h2>
+          </div>
+          <div class="ticket-stamp">🏆</div>
+          <p class="ticket-message">
+            Congratulations! You mastered the Thanksgiving Challenge!
+          </p>
+          <div class="ticket-voucher-box">
+            <div class="ticket-voucher-label">Voucher Valid For</div>
+            <div class="ticket-voucher-code">1 DELICIOUS TREAT</div>
+            <p style="font-size:0.8rem; margin-top:4px; color:var(--text-muted);" id="ticket-time-stamp"></p>
+          </div>
+          <p class="ticket-notice">
+            🎉 <strong>Show this screen to the booth staff to claim your snack!</strong>
+          </p>
+        </div>
+
+        <button class="btn btn-primary" id="btn-next-player" style="font-size:1.1rem; padding:16px 32px;">
+          Next Player / Play Again ➡️
+        </button>
+      </div>
+    </section>
+
+    <!-- ===============================================================
+         SCREEN 7: GAME OVER / TRY AGAIN
+         =============================================================== -->
+    <section class="screen" id="screen-gameover">
+      <div class="gameover-wrapper">
+        <div class="gameover-icon">🍂</div>
+        <h2 class="gameover-title" id="gameover-title">So Close!</h2>
+        <p class="gameover-desc" id="gameover-desc">
+          You almost had it! Thanksgiving is about trying again with a cheerful spirit.
+        </p>
+        <div style="display:flex; gap:12px; justify-content:center;">
+          <button class="btn btn-primary" id="btn-try-again">Try Again 🔄</button>
+          <button class="btn btn-secondary" id="btn-gameover-home">Main Menu 🏠</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Game Rules Modal -->
+  <div class="modal-overlay" id="modal-rules">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">🦃 Challenge Rules</h3>
+        <button class="btn-icon" id="btn-close-modal">✖</button>
+      </div>
+      <div class="modal-body">
+        <p>Welcome to our English Open House Booth! Each visitor can pick any of the 4 games:</p>
+        
+        <h4>🍽️ 1. Build Your Feast</h4>
+        <ul>
+          <li>Serve 5 traditional Thanksgiving foods on your plate.</li>
+          <li>Avoid fast food intruders (pizza, tacos, burgers).</li>
+          <li><strong>Margin:</strong> Max 1 mistake (2 lives). 2 minutes time limit.</li>
+        </ul>
+
+        <h4>🥧 2. Trivia Rush</h4>
+        <ul>
+          <li>Answer 7 random multiple-choice questions in English.</li>
+          <li><strong>Margin:</strong> Score 6 out of 7 correct to win. 2 minutes time limit.</li>
+        </ul>
+
+        <h4>🍂 3. Memory Match</h4>
+        <ul>
+          <li>Find all 8 vocabulary pairs on the 16-card board.</li>
+          <li><strong>Margin:</strong> Unlimited flips! Just beat the 2-minute clock.</li>
+        </ul>
+
+        <h4>🎡 4. Category Wheel</h4>
+        <ul>
+          <li>Spin the wheel to discover your theme (*History, Food, Traditions, Vocabulary*).</li>
+          <li>Answer 3 multiple-choice questions from that category.</li>
+          <li><strong>Margin:</strong> Score 2 out of 3 correct to win. 2 minutes time limit.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="questions.js"></script>
+  <script src="sound.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

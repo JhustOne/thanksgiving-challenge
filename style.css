@@ -1,0 +1,1136 @@
+/* ==========================================================================
+   Thanksgiving Challenge - Responsive Game Hub Stylesheet
+   Autumn Festive Theme: Pumpkins, Cranberries, Amber & Harvest Gold
+   ========================================================================== */
+
+:root {
+  --primary: #E65100;
+  --primary-light: #FF833A;
+  --primary-dark: #AC1900;
+  --cranberry: #880E4F;
+  --cranberry-light: #BC477B;
+  --harvest-gold: #FFB300;
+  --harvest-amber: #FFA000;
+  --forest-green: #2E7D32;
+  --cream: #FFFDF9;
+  --parchment: #FFF8E7;
+  --warm-gray: #ECE5D8;
+  --bark-brown: #3E2723;
+  --text-dark: #2C1810;
+  --text-muted: #6D4C41;
+  --shadow-sm: 0 4px 10px rgba(62, 39, 35, 0.08);
+  --shadow-md: 0 8px 24px rgba(62, 39, 35, 0.14);
+  --shadow-lg: 0 16px 40px rgba(62, 39, 35, 0.22);
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+  --font-main: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  --font-festive: 'Georgia', serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-main);
+  background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 40%, #FFCC80 100%);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle autumn background pattern */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(#E65100 0.75px, transparent 0.75px), 
+    radial-gradient(#880E4F 0.75px, #FFE0B2 0.75px);
+  background-size: 36px 36px;
+  background-position: 0 0, 18px 18px;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* App Wrapper */
+.app-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Header & Controls */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(230, 81, 0, 0.15);
+  margin-bottom: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.brand-icon {
+  font-size: 2rem;
+  line-height: 1;
+  animation: bounceSlow 3s infinite ease-in-out;
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.brand-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  letter-spacing: -0.5px;
+}
+
+.brand-sub {
+  font-size: 0.75rem;
+  color: var(--cranberry);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Buttons */
+.btn-icon {
+  background: var(--parchment);
+  border: 1px solid rgba(230, 81, 0, 0.25);
+  color: var(--text-dark);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.btn-icon:hover {
+  background: var(--harvest-gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-icon:active {
+  transform: scale(0.94);
+}
+
+.btn {
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #fff;
+  border-bottom: 3px solid #7F1D00;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  border-bottom-width: 1px;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--text-dark);
+  border: 2px solid var(--warm-gray);
+}
+
+.btn-secondary:hover {
+  background: var(--parchment);
+  border-color: var(--primary);
+}
+
+/* Screens Management */
+.screen {
+  display: none;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.screen.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   HOME SCREEN (Game Hub)
+   ========================================================================== */
+.hero-card {
+  background: linear-gradient(135deg, #FFFDF8 0%, #FFF3E0 100%);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  border: 2px solid rgba(230, 81, 0, 0.2);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card::after {
+  content: "🦃 🥧 🍂 🌽";
+  position: absolute;
+  bottom: -10px;
+  right: 15px;
+  font-size: 3rem;
+  opacity: 0.12;
+  letter-spacing: 10px;
+}
+
+.hero-tag {
+  display: inline-block;
+  background: var(--cranberry);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--primary-dark);
+  font-family: var(--font-festive);
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+
+.hero-desc {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto 16px auto;
+  line-height: 1.5;
+}
+
+.hero-rules-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 179, 0, 0.25);
+  border: 1px dashed var(--primary);
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--bark-brown);
+}
+
+/* Games Grid */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.game-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid transparent;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.game-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.game-card.card-feast { border-top: 6px solid #E65100; }
+.game-card.card-trivia { border-top: 6px solid #880E4F; }
+.game-card.card-memory { border-top: 6px solid #FF8F00; }
+.game-card.card-wheel { border-top: 6px solid #2E7D32; }
+
+.card-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: var(--warm-gray);
+  color: var(--bark-brown);
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.card-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  background: var(--parchment);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 14px;
+}
+
+.card-btn {
+  width: 100%;
+}
+
+/* ==========================================================================
+   GAME HUD (Timer, Lives, Progress)
+   ========================================================================== */
+.game-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fff;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 18px;
+  border: 1px solid rgba(230, 81, 0, 0.15);
+}
+
+.hud-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.hud-timer {
+  background: var(--parchment);
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: var(--bark-brown);
+  font-family: monospace;
+  font-size: 1.2rem;
+  border: 2px solid var(--harvest-gold);
+}
+
+.hud-timer.urgent {
+  background: #FFEBEE;
+  color: #C62828;
+  border-color: #E53935;
+  animation: pulseUrgent 1s infinite alternate;
+}
+
+@keyframes pulseUrgent {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+
+.hud-lives {
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+}
+
+.hud-status-badge {
+  background: var(--cranberry);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   GAME 1: BUILD YOUR FEAST
+   ========================================================================== */
+.feast-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.plate-container {
+  position: relative;
+  width: min(340px, 80vw);
+  height: min(340px, 80vw);
+  background: radial-gradient(circle, #FFFFFF 65%, #F0EAE1 100%);
+  border-radius: 50%;
+  box-shadow: 
+    inset 0 4px 10px rgba(0,0,0,0.1), 
+    0 12px 30px rgba(62,39,35,0.25);
+  border: 12px solid #FFFDF8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.plate-inner {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  border: 2px dashed rgba(230, 81, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.plate-slots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.plate-food-item {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.plate-food-icon {
+  font-size: 2.8rem;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+}
+
+.plate-food-name {
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  padding: 2px 8px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.plate-empty-prompt {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding: 20px;
+}
+
+/* Fact Banner */
+.feast-fact-banner {
+  background: #FFF9C4;
+  border: 2px solid var(--harvest-gold);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  color: var(--bark-brown);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: var(--shadow-sm);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Food Buffet Conveyor */
+.buffet-section {
+  width: 100%;
+}
+
+.buffet-heading {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--primary-dark);
+  margin-bottom: 12px;
+  font-weight: 800;
+}
+
+.buffet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+  gap: 12px;
+}
+
+.food-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 2px solid rgba(230, 81, 0, 0.12);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.food-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+.food-card:active {
+  transform: scale(0.95);
+}
+
+.food-card.served {
+  opacity: 0.35;
+  pointer-events: none;
+  filter: grayscale(80%);
+}
+
+.food-card.shake-wrong {
+  animation: shake 0.4s ease;
+  border-color: #E53935;
+  background: #FFEBEE;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.food-card-icon {
+  font-size: 2.6rem;
+  margin-bottom: 6px;
+}
+
+.food-card-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+/* ==========================================================================
+   GAME 2: TRIVIA RUSH
+   ========================================================================== */
+.trivia-container {
+  max-width: 750px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.trivia-progress-bar {
+  width: 100%;
+  height: 10px;
+  background: var(--warm-gray);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.trivia-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--harvest-gold), var(--primary));
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.trivia-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 26px 22px;
+  box-shadow: var(--shadow-md);
+  border: 2px solid rgba(230, 81, 0, 0.15);
+  margin-bottom: 18px;
+}
+
+.trivia-question-number {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--cranberry);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.trivia-question-text {
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.35;
+  margin-bottom: 22px;
+}
+
+.trivia-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 600px) {
+  .trivia-options {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.trivia-btn {
+  background: var(--parchment);
+  border: 2px solid rgba(230, 81, 0, 0.18);
+  border-radius: var(--radius-md);
+  padding: 16px 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.trivia-btn-letter {
+  background: var(--primary);
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.trivia-btn:hover {
+  background: #fff;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.trivia-btn.correct {
+  background: #E8F5E9 !important;
+  border-color: #2E7D32 !important;
+  color: #1B5E20 !important;
+}
+
+.trivia-btn.correct .trivia-btn-letter {
+  background: #2E7D32;
+}
+
+.trivia-btn.wrong {
+  background: #FFEBEE !important;
+  border-color: #C62828 !important;
+  color: #B71C1C !important;
+}
+
+.trivia-btn.wrong .trivia-btn-letter {
+  background: #C62828;
+}
+
+.trivia-explanation {
+  background: #FFF9C4;
+  border-left: 5px solid var(--harvest-gold);
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  margin-top: 16px;
+  font-size: 0.92rem;
+  color: var(--bark-brown);
+  display: none;
+  animation: fadeIn 0.25s ease;
+}
+
+/* ==========================================================================
+   GAME 3: MEMORY MATCH (4x4 Grid)
+   ========================================================================== */
+.memory-container {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  perspective: 1000px;
+  margin-bottom: 16px;
+}
+
+.memory-card {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: var(--shadow-sm);
+}
+
+.memory-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.memory-card.matched {
+  transform: rotateY(180deg);
+  pointer-events: none;
+}
+
+.memory-card.matched .card-front {
+  background: #E8F5E9;
+  border-color: #4CAF50;
+  box-shadow: 0 0 12px rgba(76, 175, 80, 0.4);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  text-align: center;
+}
+
+.card-back {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #fff;
+  border: 3px solid #FFF8E1;
+  font-size: 2.2rem;
+}
+
+.card-front {
+  background: #fff;
+  border: 3px solid var(--harvest-gold);
+  transform: rotateY(180deg);
+}
+
+.memory-item-icon {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.memory-item-word {
+  font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+  font-weight: 800;
+  color: var(--primary-dark);
+  line-height: 1.1;
+}
+
+/* ==========================================================================
+   GAME 4: CATEGORY WHEEL
+   ========================================================================== */
+.wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 750px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.wheel-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -16px;
+  z-index: 10;
+  font-size: 2.6rem;
+  color: #C62828;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+  transform-origin: top center;
+  transition: transform 0.1s ease;
+}
+
+.wheel-canvas {
+  width: min(340px, 80vw);
+  height: min(340px, 80vw);
+  border-radius: 50%;
+  box-shadow: 
+    0 12px 35px rgba(62,39,35,0.25),
+    0 0 0 10px #FFFDF8,
+    0 0 0 14px var(--primary);
+  background: #fff;
+  cursor: pointer;
+  transition: transform 4s cubic-bezier(0.15, 0.95, 0.35, 1);
+}
+
+.wheel-center-cap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, #FFFDF8 40%, var(--harvest-gold) 100%);
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.wheel-result-banner {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 14px 22px;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 800;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--harvest-gold);
+  width: 100%;
+  max-width: 500px;
+  display: none;
+}
+
+.wheel-quiz-card {
+  width: 100%;
+  display: none;
+}
+
+/* ==========================================================================
+   VICTORY SCREEN & SNACK TICKET
+   ========================================================================== */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.victory-wrapper {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ticket-container {
+  background: #FFFDF8;
+  border-radius: var(--radius-lg);
+  border: 4px solid #D4AF37; /* Metallic Gold */
+  box-shadow: 
+    0 0 25px rgba(212, 175, 55, 0.4),
+    var(--shadow-lg);
+  padding: 26px 22px;
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Golden ticket ornamental dashed border */
+.ticket-container::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 2px dashed #D4AF37;
+  border-radius: calc(var(--radius-lg) - 6px);
+  pointer-events: none;
+}
+
+.ticket-header {
+  margin-bottom: 14px;
+}
+
+.ticket-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 6px 18px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(170, 124, 17, 0.3);
+}
+
+.ticket-title {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  color: var(--primary-dark);
+  font-family: var(--font-festive);
+  margin-top: 10px;
+}
+
+.ticket-stamp {
+  font-size: 4rem;
+  margin: 10px 0;
+  animation: stampPulse 2s infinite ease-in-out;
+}
+
+@keyframes stampPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.ticket-message {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--cranberry);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.ticket-voucher-box {
+  background: #FFF8E1;
+  border: 2px solid var(--harvest-gold);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.ticket-voucher-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 800;
+  color: var(--text-muted);
+}
+
+.ticket-voucher-code {
+  font-family: monospace;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--primary-dark);
+  letter-spacing: 2px;
+}
+
+.ticket-notice {
+  font-size: 0.88rem;
+  color: var(--bark-brown);
+  font-weight: 600;
+}
+
+/* Game Over / Try Again Screen */
+.gameover-wrapper {
+  max-width: 500px;
+  width: 100%;
+  margin: 40px auto;
+  text-align: center;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  box-shadow: var(--shadow-md);
+  border: 3px solid var(--warm-gray);
+}
+
+.gameover-icon {
+  font-size: 4rem;
+  margin-bottom: 14px;
+}
+
+.gameover-title {
+  font-size: 1.8rem;
+  color: var(--primary-dark);
+  margin-bottom: 10px;
+}
+
+.gameover-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(44, 24, 16, 0.65);
+  backdrop-filter: blur(5px);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  max-width: 580px;
+  width: 100%;
+  padding: 26px;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--harvest-gold);
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.modal-title {
+  font-size: 1.35rem;
+  color: var(--primary-dark);
+  font-weight: 800;
+}
+
+.modal-body {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.modal-body h4 {
+  color: var(--cranberry);
+  margin: 14px 0 6px 0;
+  font-size: 1.05rem;
+}
+
+.modal-body ul {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 600px) {
+  .app-container {
+    padding: 10px;
+  }
+  .app-header {
+    padding: 10px 14px;
+  }
+  .brand-title {
+    font-size: 1.05rem;
+  }
+  .hero-card {
+    padding: 18px 14px;
+  }
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+  .buffet-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .memory-grid {
+    gap: 8px;
+  }
+}
